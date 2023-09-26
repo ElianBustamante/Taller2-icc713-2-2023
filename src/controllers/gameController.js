@@ -16,7 +16,7 @@ const findGameByName = (req, res) => {
 // Función para recomendar juegos aleatorios para una consola específica
 const recommendRandomGamesForConsole = (req, res) => {
   const { consoleName } = req.params;
-  const recommendedGames = getRandomGamesForConsole(consoleName, 3);
+  const recommendedGames = getRandomGamesForConsole(consoleName, 2);
 
   if (recommendedGames.length === 0) {
     return res.status(404).json({ error: 'No se encontraron juegos para la consola especificada.' });
@@ -42,8 +42,8 @@ const randomGameByGenreAndConsole = (req, res) => {
 
 // Función para recomendar juegos aleatorios para un género específico
 const recommendRandomGamesByGenre = (req, res) => {
-  const { genreName } = req.body;
-  const recommendedGames = getRandomGamesByGenre(genreName, 3);
+  const { genre_name } = req.body;
+  const recommendedGames = getRandomGamesByGenre(genre_name, 3);
 
   if (recommendedGames.length === 0) {
     return res.status(404).json({ error: 'No se encontraron juegos para el género especificado.' });
