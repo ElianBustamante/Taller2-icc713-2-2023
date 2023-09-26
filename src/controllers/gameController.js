@@ -25,6 +25,33 @@ const recommendRandomGamesForConsole = (req, res) => {
   res.json(recommendedGames);
 };
 
+
+const getRandomInt = (max) => {
+  return Math.floor(Math.random() * Math.floor(max));
+};
+
+const getRandomGameByGenreAndConsole = (genre_name, consoleAbreviation) => {
+  const gamesForConsole = videoGames[consoleAbreviation];
+
+  if (!gamesForConsole) {
+    return [];
+  }
+
+  const matchingGames = gamesForConsole.filter(game => game.genres.includes(genre_name));
+
+  if (matchingGames.length === 0) {
+    return [];
+  }
+
+  const randomIndex = getRandomInt(matchingGames.length);
+  const randomGame = matchingGames[randomIndex];
+
+  const responseString = `${randomGame.name} - ${randomGame.video_console} - [${randomGame.genres.join(", ")}]`;
+
+  return { response: responseString };
+};
+
+
 // Función para recomendar juegos aleatorios para un género específico
 const recommendRandomGamesByGenre = (req, res) => {
   const { genreName } = req.body;
@@ -37,4 +64,4 @@ const recommendRandomGamesByGenre = (req, res) => {
   res.json(recommendedGames);
 };
 
-export { findGameByName, recommendRandomGamesForConsole, recommendRandomGamesByGenre };
+export { findGameByName, recommendRandomGamesForConsole, recommendRandomGamesByGenre, getRandomGameByGenreAndConsole };
