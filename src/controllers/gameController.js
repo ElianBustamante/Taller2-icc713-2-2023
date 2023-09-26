@@ -1,5 +1,5 @@
 // src/controllers/gameController.js
-import { getGameByName, getRandomGamesForConsole, getRandomGamesByGenre } from '../services/gameService.js';
+import { getGameByName, getRandomGamesForConsole, getRandomGamesByGenre, getRandomGameByGenreAndConsole } from '../services/gameService.js';
 
 // Función para buscar un juego por nombre
 const findGameByName = (req, res) => {
@@ -26,29 +26,15 @@ const recommendRandomGamesForConsole = (req, res) => {
 };
 
 
-const getRandomInt = (max) => {
-  return Math.floor(Math.random() * Math.floor(max));
-};
+const randomGameByGenreAndConsole = (req, res) => {
+  const { genre_name, console_abbr } = req.params;
+  const randomGame = getRandomGameByGenreAndConsole(genre_name, console_abbr);
 
-const getRandomGameByGenreAndConsole = (genre_name, consoleAbreviation) => {
-  const gamesForConsole = videoGames[consoleAbreviation];
-
-  if (!gamesForConsole) {
-    return [];
+  if (!randomGame) {
+    return res.status(404).json({ error: 'No se encontraron juegos para el género y la consola especificados.' });
   }
 
-  const matchingGames = gamesForConsole.filter(game => game.genres.includes(genre_name));
-
-  if (matchingGames.length === 0) {
-    return [];
-  }
-
-  const randomIndex = getRandomInt(matchingGames.length);
-  const randomGame = matchingGames[randomIndex];
-
-  const responseString = `${randomGame.name} - ${randomGame.video_console} - [${randomGame.genres.join(", ")}]`;
-
-  return { response: responseString };
+  res.json(randomGame);
 };
 
 
@@ -64,4 +50,4 @@ const recommendRandomGamesByGenre = (req, res) => {
   res.json(recommendedGames);
 };
 
-export { findGameByName, recommendRandomGamesForConsole, recommendRandomGamesByGenre, getRandomGameByGenreAndConsole };
+export { findGameByName, recommendRandomGamesForConsole, recommendRandomGamesByGenre, randomGameByGenreAndConsole };

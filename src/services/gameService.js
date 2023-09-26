@@ -65,4 +65,24 @@ const getRandomGamesByGenre = (genreName, count) => {
   return randomGames;
 };
 
-export { getGameByName, getRandomGamesForConsole, getRandomGamesByGenre };
+const getRandomGameByGenreAndConsole = (genre_name, consoleAbreviation) => {
+  const gamesForConsole = videoGames[consoleAbreviation];
+
+  if (!gamesForConsole) {
+    return null;
+  }
+
+  const matchingGames = gamesForConsole.filter(game => game.genres.includes(genre_name));
+
+  if (matchingGames.length === 0) {
+    return null;
+  }
+
+  const randomIndex = getRandomInt(matchingGames.length);
+  const randomGame = matchingGames[randomIndex];
+
+
+  return { response: responseString };
+};
+
+export { getGameByName, getRandomGamesForConsole, getRandomGamesByGenre, getRandomGameByGenreAndConsole };
