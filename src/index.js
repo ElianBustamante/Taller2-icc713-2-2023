@@ -1,10 +1,10 @@
 import { app, PORT } from './configs/express.js';
 import gameRoutes from './routes/gameRoutes.js';
 
-// Agrega las rutas de juegos
+// Register the routes
 app.use('/api', gameRoutes);
 
-// Inicia el servidor
+// Start the server
 app.listen(PORT, () => {
   console.log(`Servidor Express escuchando en el puerto ${PORT}`);
 });

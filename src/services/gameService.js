@@ -1,4 +1,3 @@
-// src/services/gameService.js
 import videoGames from '../load-games.js';
 import { getRandomGames, formatGames, getRandomInt } from '../utils/serviceUtils.js';
 

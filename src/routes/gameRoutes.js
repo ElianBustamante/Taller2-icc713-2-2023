@@ -1,23 +1,19 @@
-// src/routes/gameRoutes.js
 import express from 'express';
 
-import { findGameByName, recommendRandomGamesForConsole, recommendRandomGamesByGenre, randomGameByGenreAndConsole } from '../controllers/gameController.js';
-
+import { findGameByName, recommendRandomGamesForConsole, recommendRandomGamesByGenre, recommendRandomGameByGenreAndConsole } from '../controllers/gameController.js';
 
 const router = express.Router();
 
-// Ruta para buscar un juego por nombre
-router.get('/game', findGameByName);
+// Route to recommend 2 random games for a specific console
+router.get('/consoles/:console_abreviation/random_games', recommendRandomGamesForConsole);
 
-// Ruta para recomendar juegos aleatorios para una consola específica
-router.get('/consoles/:consoleName/random_games', recommendRandomGamesForConsole);
-
-// Ruta para recomendar juegos aleatorios para un género específico (POST)
+// Route to recommend 3 random games for a specific genre
 router.post('/genres/random_games', recommendRandomGamesByGenre);
 
+// Route to recommend a random game for a specific genre and console
+router.post('/consoles/:console_abreviation/genre/random_game', recommendRandomGameByGenreAndConsole);
 
-// Ruta para obtener un juego aleatorio por género y consola (POST)
-router.post('/consoles/:console_abreviation/genre/random_game', randomGameByGenreAndConsole);
-
+// Route to find a game by name
+router.get('/game', findGameByName);
 
 export default router;
