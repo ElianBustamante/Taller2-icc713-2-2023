@@ -26,6 +26,12 @@
 
 This project its about a software that recomends games to the user based on some questions. This software uses Javascript as the main language, and Express as the framework for the backend.
 
+Express is a popular web application framework for Node.js. It provides a robust set of features for building web applications and APIs, including routing, middleware, and templating. Express is widely used in the industry and has a large community of developers contributing to its development and maintenance.
+
+An API, or Application Programming Interface, is a set of protocols and tools for building software applications. APIs allow different software applications to communicate with each other, enabling developers to build complex systems by combining different services and data sources. APIs are commonly used to build web applications, mobile apps, and other software systems.
+
+In the context of this project, the API is used to provide recommendations for games based petitions. The API is built using Express, and provides several endpoints for different types of recommendations (4 endpoints). You can make requests to the API using HTTP methods like GET and POST, and receive responses in JSON format.
+
 ## Getting Started <a name = "getting_started"></a>
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
