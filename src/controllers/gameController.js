@@ -27,14 +27,16 @@ const recommendRandomGamesForConsole = (req, res) => {
 
 
 const randomGameByGenreAndConsole = (req, res) => {
-  const { genre_name, console_abbr } = req.params;
-  const randomGame = getRandomGameByGenreAndConsole(genre_name, console_abbr);
+  const { console_abreviation } = req.params;
+  const { genre_name } = req.body;
 
-  if (!randomGame) {
-    return res.status(404).json({ error: 'No se encontraron juegos para el género y la consola especificados.' });
+  const result = getRandomGameByGenreAndConsole(genre_name, console_abreviation);
+
+  if (result.length === 0) {
+    res.status(404).json({ error: "No games found for specified console and genre" });
+  } else {
+    res.status(200).json(result);
   }
-
-  res.json(randomGame);
 };
 
 

@@ -65,22 +65,27 @@ const getRandomGamesByGenre = (genreName, count) => {
   return randomGames;
 };
 
-const getRandomGameByGenreAndConsole = (genre_name, consoleAbreviation) => {
-  const gamesForConsole = videoGames[consoleAbreviation];
+const getRandomInt = (max) => {
+  return Math.floor(Math.random() * Math.floor(max));
+};
+
+const getRandomGameByGenreAndConsole = (genre_name, console_abreviation) => {
+  const gamesForConsole = videoGames[console_abreviation];
 
   if (!gamesForConsole) {
-    return null;
+    return [];
   }
 
   const matchingGames = gamesForConsole.filter(game => game.genres.includes(genre_name));
 
   if (matchingGames.length === 0) {
-    return null;
+    return [];
   }
 
   const randomIndex = getRandomInt(matchingGames.length);
   const randomGame = matchingGames[randomIndex];
 
+  const responseString = `${randomGame.name} - ${randomGame.video_console} - [${randomGame.genres.join(", ")}]`;
 
   return { response: responseString };
 };

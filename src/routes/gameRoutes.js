@@ -17,7 +17,7 @@ router.post('/genres/random_games', recommendRandomGamesByGenre);
 
 
 // Ruta para obtener un juego aleatorio por género y consola (POST)
-router.post('/genres/:genre_name/consoles/:console_abbr/random_game', randomGameByGenreAndConsole);
+router.post('/consoles/:console_abreviation/genre/random_game', randomGameByGenreAndConsole);
 
 
 export default router;
