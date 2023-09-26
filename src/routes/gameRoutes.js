@@ -1,6 +1,6 @@
 // src/routes/gameRoutes.js
 import express from 'express';
-import { getGameByName, getRandomGamesForConsole } from '../controllers/gameController.js'; // Añade la extensión .js
+import { getGameByName, getRandomGamesForConsole, getRandomGameByGenreAndConsole } from '../controllers/gameController.js'; // Añade la extensión .js
 
 const router = express.Router();
 
@@ -36,6 +36,18 @@ router.get('/consoles/:consoleName/random_games', (req, res) => {
   });
 
   res.json(response);
+});
+
+router.post('/consoles/:consoleAbreviation/genre/random_game', (req, res) => {
+  const { consoleAbreviation } = req.params;
+  const { genre_name } = req.body;
+  const result = getRandomGameByGenreAndConsole(genre_name, consoleAbreviation);
+
+  if (result.length === 0) {
+    res.status(404).json({ error: "No games found for specified console and genre" });
+  } else {
+    res.status(200).json(result);
+  }
 });
 
 export default router;
