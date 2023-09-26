@@ -1,5 +1,6 @@
 // src/services/gameService.js
 import videoGames from '../load-games.js';
+import { getRandomGames, formatGames, getRandomInt } from '../utils/serviceUtils.js';
 
 /**
  * Returns the video game with the given name, along with its video console and genres.
@@ -12,27 +13,27 @@ const getGameByName = (name) => {
 };
 
 /**
- * Returns an object with a response array containing a specified number of random games for a given console.
+ * Returns an array of random games for a given console.
  * @param {string} consoleName - The name of the console to get games for.
  * @param {number} count - The number of random games to return.
  * @returns {Object} - An object with a response array containing the specified number of random games for the given console.
  */
 const getRandomGamesForConsole = (consoleName, count) => {
   const gamesForConsole = videoGames[consoleName] || [];
-  const randomGames = gamesForConsole.sort(() => Math.random() - 0.5).slice(0, count);
-  return { response: randomGames.map(game => `${game.name} - ${game.video_console} - [${game.genres.join(", ")}]`) };
+  const randomGames = getRandomGames(gamesForConsole, count);
+  return { response: formatGames(randomGames) };
 };
 
 /**
- * Returns an object with a response property containing an array of random games that match the given genre.
+ * Returns an array of random games that match the given genre.
  * @param {string} genreName - The name of the genre to match.
  * @param {number} count - The number of random games to return.
  * @returns {{response: string[]}} - An object with a response property containing an array of strings representing the random games.
  */
 const getRandomGamesByGenre = (genreName, count) => {
   const matchingGames = Object.values(videoGames).flatMap(games => games).filter(game => game.genres.includes(genreName));
-  const randomGames = matchingGames.sort(() => Math.random() - 0.5).slice(0, count);
-  return { response: randomGames.map(game => `${game.name} - ${game.video_console} - [${game.genres.join(", ")}]`) };
+  const randomGames = getRandomGames(matchingGames, count);
+  return { response: formatGames(randomGames) };
 };
 
 /**
@@ -45,10 +46,6 @@ const getRandomGameByGenreAndConsole = (genre_name, console_abreviation) => {
   const gamesForConsole = videoGames[console_abreviation] || [];
   const matchingGames = gamesForConsole.filter(game => game.genres.includes(genre_name));
   return matchingGames.length > 0 ? { response: `${matchingGames[getRandomInt(matchingGames.length)].name} - ${matchingGames[0].video_console} - [${matchingGames[0].genres.join(", ")}]` } : { response: `No se encontraron juegos para el género y consola especificados` };
-};
-
-const getRandomInt = (max) => {
-  return Math.floor(Math.random() * Math.floor(max));
 };
 
 export { getGameByName, getRandomGamesForConsole, getRandomGamesByGenre, getRandomGameByGenreAndConsole };

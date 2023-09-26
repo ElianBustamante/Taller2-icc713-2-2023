@@ -18,7 +18,7 @@ const findGameByName = (req, res) => {
 // Función para recomendar juegos aleatorios para una consola específica
 const recommendRandomGamesForConsole = (req, res) => {
   const { consoleName } = req.params;
-  const recommendedGames = getRandomGamesForConsole(consoleName, 3);
+  const recommendedGames = getRandomGamesForConsole(consoleName, 2);
   sendResponse(res, recommendedGames);
 };
 
