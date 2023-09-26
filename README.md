@@ -24,7 +24,7 @@
 
 ## About <a name = "about"></a>
 
-This project its about a software that recomends games to the user based on some questions. This software uses Javascript as the main language, and Express as the framework for the backend.
+This project its about a software that recomends games to the user based on some questions. This software uses Javascript as the main language, and Express as the framework for the backend. The data of the videogames are saved in a JSON file (GBA.json, N64.json, PS2.json), and the software uses an API to get the data. The software has 4 endpoints, and each one has a different function.
 
 Express is a popular web application framework for Node.js. It provides a robust set of features for building web applications and APIs, including routing, middleware, and templating. Express is widely used in the industry and has a large community of developers contributing to its development and maintenance.
 
@@ -119,7 +119,7 @@ http://localhost:3000/api/game?name=[insert game name here]
 
 This project uses the following environment variables.
 
-PORT: Port where the server will run. By default, it is 3000.
+**PORT:** Port where the server will run. By default, it is 3000.
 
 ## API <a name = "api"></a>
 
