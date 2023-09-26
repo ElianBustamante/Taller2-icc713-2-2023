@@ -4,6 +4,6 @@ const sendResponse = (res, data) => {
     } else {
       res.json(data);
     }
-  };
+};
   
-  export { sendResponse };
+export { sendResponse };
