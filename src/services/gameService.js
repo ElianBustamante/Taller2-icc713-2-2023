@@ -35,6 +35,12 @@ const getRandomGamesByGenre = (genreName, count) => {
   return { response: randomGames.map(game => `${game.name} - ${game.video_console} - [${game.genres.join(", ")}]`) };
 };
 
+/**
+ * Returns a random game that matches the specified genre and console.
+ * @param {string} genre_name - The name of the genre to search for.
+ * @param {string} console_abreviation - The abbreviation of the console to search for.
+ * @returns {Object} - An object containing the response message.
+ */
 const getRandomGameByGenreAndConsole = (genre_name, console_abreviation) => {
   const gamesForConsole = videoGames[console_abreviation] || [];
   const matchingGames = gamesForConsole.filter(game => game.genres.includes(genre_name));
