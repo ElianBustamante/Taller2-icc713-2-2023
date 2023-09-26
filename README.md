@@ -69,14 +69,14 @@ Servidor Express escuchando en el puerto 3000
 
 Now, you can go to your browser or use Postman, and type the following urls or petitions.
 
-a. Recommend two random games for a given console (PS2, GBA, N64).
+**a. Recommend two random games for a given console (PS2, GBA, N64).**
 
 Method: GET
 ```
 http://localhost:3000/api/consoles/[insert console abreviation here]/random_games
 ```
 
-b. Recommend three random games for a given genre.
+**b. Recommend three random games for a given genre.**
 
 METHOD: POST
 ```
@@ -89,7 +89,7 @@ Body example:
 }
 ```
 
-c. Recommend one random game for a given console and genre.
+**c. Recommend one random game for a given console and genre.**
 
 METHOD: POST
 ```
@@ -102,7 +102,7 @@ Body example:
 }
 ```
 
-d. Find a game by its name.
+**d. Find a game by its name.**
 
 METHOD: GET
 ```
